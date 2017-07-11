@@ -40,6 +40,7 @@ function signup(user) {
 }
 
 module.exports = {
+  mongoose,
   login,
   signup,
   article

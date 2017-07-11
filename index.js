@@ -17,6 +17,7 @@
 const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const MongoStore = require('connect-mongo')(session);
 const model = require('./models');
 
 const config = require('./config/default');
@@ -28,23 +29,24 @@ const urlencodedParser = bodyParser.urlencoded({
   extended: true
 });
 
-var sess = {};
-
 app.use('/assets', express.static(__dirname + '/public'));
-
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
 app.use(urlencodedParser);
-app.use(session(config.session));
 
-app.use((req, res, next) => {
-  res.locals.errors = req.session.error;
-  next();
-});
+app.use(
+  session(
+    Object.assign({}, config.session, {
+      store: new MongoStore({
+        mongooseConnection: model.mongoose.connection
+      })
+    })
+  )
+);
 
 app.get('/', (req, res) => {
-  if (sess.user) {
+  if (req.session.user) {
     res.render('index');
   } else {
     res.redirect('login');
@@ -97,7 +99,6 @@ app.post('/create', (req, res) => {
       success: true,
       id: post._id
     });
-    // res.redirect(`/posts/${post._id}`);
   });
 });
 
@@ -135,7 +136,8 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-  return model.login(req.body).then(m => {
+	console.log(req.cookies);
+  model.login(req.body).then(m => {
     // 找不到
     if (m.length === 0) {
       res.json({
@@ -143,8 +145,7 @@ app.post('/login', (req, res) => {
         result: 'not found'
       });
     } else {
-      sess = req.session;
-      req.session.user = sess.user = m[0];
+      req.session.user = m[0];
       res.json({
         success: true,
         redirect: '/'
