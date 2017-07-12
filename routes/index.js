@@ -6,12 +6,14 @@ const {
   postIdByGet
 } = require('./post');
 
-const { loginByGet, loginByPost } = require('./login');
+const { loginByGet, loginByPost, loginOut } = require('./login');
 
 module.exports = makeRoutes = app => {
   // login
   app.get('/login', loginByGet);
   app.post('/login', loginByPost);
+
+  app.get('/loginout', loginOut);
 
   // posts
   app.get('/create', createByGet);
