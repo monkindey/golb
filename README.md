@@ -15,11 +15,13 @@
 	* 某人 /article?author=xxx
 	* 文章留言 /articles/:articleId
 * 发表文章
-	* 发表文章页 GET /articles/create
-	* 发表 POST /articles/create
+	* 发表文章页 GET /posts/create
+	* 发表 POST /posts/create
 * 删除文章
-	* 删除 POST /articles/:articleID/remove
+	* 删除 POST /posts/:articleID/delete
 
 
+### 问题
 
+1. fetch不会带上cookie, 导致session不一致
 
