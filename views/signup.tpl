@@ -4,8 +4,6 @@
 	<meta charset="UTF-8">
 	<title>Sign Up</title>
 
-	<link rel="stylesheet" href="./assets/css/hack.css">
-	<link rel="stylesheet" href="./assets/css/dark.css">
 	<style></style>
 </head>
 <body class="hack">

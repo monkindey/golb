@@ -3,8 +3,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Articles</title>
-	<!--<link rel="stylesheet" href="./assets/css/hack.css">
-	<link rel="stylesheet" href="./assets/css/dark.css">-->
 </head>
 <body>
 	<h3>写下你的文章</h3>

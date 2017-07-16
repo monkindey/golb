@@ -10,12 +10,14 @@
  * 1. post redirect ajax json解释错误, 因为你用json去解析它重定向的html
  * 2. post express session redirect can not store, because you not send cookie
  * and the redirect should let client to do it rather than the server.
+ * 3. 修改nunjucks模版引擎的后缀名
  */
 
 const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const MongoStore = require('connect-mongo')(session);
+const nunjucks = require('nunjucks');
 
 const model = require('./models');
 const makeRoutes = require('./routes');
@@ -29,7 +31,19 @@ const urlencodedParser = bodyParser.urlencoded({
 
 app.use('/assets', express.static(__dirname + '/public'));
 app.set('views', './views');
-app.set('view engine', 'ejs');
+
+
+/**
+ * 修改nunjucks模版引擎的后缀名
+ */
+app.engine('tpl', nunjucks.render);
+
+nunjucks.configure('views', {
+  autoescape: true,
+  express: app
+});
+
+app.set('view engine', 'tpl');
 
 app.use(urlencodedParser);
 

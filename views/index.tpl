@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Hello</title>
+	<title>主页</title>
+	<link rel="stylesheet" href="assets/css/pur.css">
 </head>
 <body>
 	<ul>

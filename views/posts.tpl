@@ -1,15 +1,15 @@
 <ul>
-	<% posts.forEach(function(post) { %>
-		<li data-id="<%= post._id %>">
+	{% for post in posts %}
+		<li data-id="{{ post._id }} ">
 			<h5>
-				<a href="posts/<%= post._id %>"><%= post.title %></a>
+				<a href="posts/{{ post._id }} ">{{ post.title }} </a>
 			</h5>
 			<p>
-				<%= post.content %>
+				{{ post.content }} 
 			</p>
 			<button class="delete-btn">删除</button>
 		</li>
-	<% }) %>
+	{% endfor %}
 </ul>
 
 <script>
