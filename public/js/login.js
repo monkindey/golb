@@ -9,7 +9,31 @@
     ENTER: 13
   };
 
+  /**
+   * @param {string} selector 
+   */
+  function q(selector) {
+    if (selector[0] === '#') {
+      return document.getElementById(selector.slice(1));
+    } else {
+      return document.querySelector(selector);
+    }
+  }
+
+  function qa(selector) {
+    return document.querySelectorAll(selector);
+  }
+
+  function arrayify(like) {
+    return [].slice.call(like);
+  }
+
   function on(el, event, handler, opt) {
+    if (el.length) {
+      return arrayify(el).forEach(function(element) {
+        on(element, event, handler);
+      });
+    }
     el.addEventListener(event, handler, opt);
   }
 
@@ -46,10 +70,12 @@
     }
   };
 
-  const username = document.getElementById('username');
-  const password = document.getElementById('password');
+  const username = q('#username');
+  const password = q('#password');
+  const step2 = q('#input-pwd-step');
 
-  const step2 = document.getElementById('step-2');
+  const flipper = q('.flipper-wrapper');
+  const toggle = qa('.sh-icon-close');
 
   username.focus();
 
@@ -73,5 +99,9 @@
           }
         });
     }
+  });
+
+  on(toggle, 'click', function(e) {
+    flipper.classList.toggle('flip');
   });
 })();

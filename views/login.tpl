@@ -9,29 +9,45 @@
 {% endblock %}
 
 {% block content %}
-<div class="center login">
-	<div class="header">
-		<span class="icon close"></span>
-		<span class="icon minimize"></span>
-		<span class="icon full-screen"></span>
-		<div class="url">localhost</div>
-	</div>
-	<div class="body">
-		<p id="step-1">
-			<span>
-				<i class="cicle"></i> ~/ $ Please Enter Your Name
-			</span>
-			<br>
-			<input id="username" name="username" type="text" class="username">
-		</p>
 
-		<p id="step-2" style="display: none">
-			<span>
-				<i class="cicle"></i> ~/ $ And Enter Your Password</span>
-			</span>
-			<br>
-			<input id="password" type="password" name="password" class="password">
-		</p>
+<div class="flipper-wrapper center">
+	<div class="flipper">
+		<div class="login sh">
+			<div class="sh-hd">
+				<span class="sh-icon sh-icon-close">×</span>
+				<span class="sh-icon sh-icon-minimize"></span>
+				<span class="sh-icon sh-icon-full-screen"></span>
+				<div class="url">localhost</div>
+			</div>
+			<div class="sh-bd">
+				<p>
+					<span>
+						<i class="cicle"></i> ~/ $ Please Enter Your Name
+					</span>
+					<br>
+					<input id="username" name="username" type="text" class="username">
+				</p>
+
+				<p id="input-pwd-step" style="display: none">
+					<span>
+						<i class="cicle"></i> ~/ $ And Enter Your Password</span>
+					</span>
+					<br>
+					<input id="password" type="password" name="password" class="password">
+				</p>
+			</div>
+		</div>
+
+		<div class="sign sh sh-dark">
+			<div class="sh-hd">
+				<span class="sh-icon sh-icon-close">×</span>
+				<span class="sh-icon sh-icon-minimize"></span>
+				<span class="sh-icon sh-icon-full-screen"></span>
+			</div>
+			<div class="sh-bd">
+				<p>Hello world</p>
+			</div>
+		</div>
 	</div>
 </div>
 {% endblock %}

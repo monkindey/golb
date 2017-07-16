@@ -1,28 +1,102 @@
-.login {
+/*The flip demo ref to https://davidwalsh.name/css-flip*/
+
+.sh {
+  font-size: 12px;
   width: 450px;
   height: 290px;
   padding: 10px;
   box-sizing: border-box;
   box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.1);
-  margin-top: 200px;
+  background-color: white;
+  border-radius: 2px;
 }
 
-.header {
+.sh-dark {
+  background-color: black;
+  color: #fff;
+}
+
+.sh-hd {
   height: 30px;
   position: relative;
-  font-size: 12px;
 }
 
-.icon {
+.sh-icon {
   display: inline-block;
   height: 12px;
   width: 12px;
   border-radius: 50%;
-  display: inline-block;
   position: absolute;
   top: 0;
   bottom: 0;
   margin: auto;
+  text-align: center;
+  line-height: 12px;
+  cursor: pointer;
+}
+
+.sh-icon:hover {
+  color: rgba(0, 0, 0, .6);
+}
+
+.sh-icon-close {
+  background-color: #ff5f56;
+  color: #ff5f56;
+  left: 10px;
+}
+
+.sh-icon-minimize {
+  background-color: #ffbd2e;
+  left: 30px;
+}
+
+.sh-icon-full-screen {
+  background-color: #27c93f;
+  left: 50px;
+}
+
+.sh-bd {
+  margin-top: 15px;
+  padding: 10px;
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Courier New, monospace, serif;
+}
+
+.flipper-wrapper {
+  width: 450px;
+  height: 290px;
+  perspective: 1000;
+  -webkit-perspective: 1000;
+}
+
+.flipper {
+  margin-top: 200px;
+  position: relative;
+  transition: 0.6s;
+  transform-style: preserve-3d;
+}
+
+/*flip the panel when hovered*/
+.flipper-wrapper.flip .flipper {
+  transform: rotateY(180deg);
+}
+
+/*Login panel must be first in flip effect when init*/
+.login {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+
+.sign {
+  transform: rotateY(180deg);
+}
+
+.login,
+.sign {
+  backface-visibility: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .url {
@@ -47,29 +121,6 @@
   display: inline-block;
   height: 100%;
   vertical-align: middle;
-}
-
-.close {
-  background-color: #ff5f56;
-  left: 10px;
-}
-
-.minimize {
-  background-color: #ffbd2e;
-  left: 30px;
-}
-
-.full-screen {
-  background-color: #27c93f;
-  left: 50px;
-}
-
-.body {
-  margin-top: 15px;
-  padding: 10px;
-  font-size: 12px;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace, serif;
 }
 
 .cicle {
