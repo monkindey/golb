@@ -1,16 +1,30 @@
-<ul>
-	{% for post in posts %}
-		<li data-id="{{ post._id }} ">
-			<h5>
-				<a href="posts/{{ post._id }} ">{{ post.title }} </a>
-			</h5>
-			<p>
-				{{ post.content }} 
-			</p>
-			<button class="delete-btn">删除</button>
-		</li>
-	{% endfor %}
-</ul>
+{% extends "./include/common.tpl" %}
+{% block title %}
+<title>所有文章</title>
+{% endblock %}
+
+{% block style%}
+<link rel="stylesheet" href="assets/css/posts.css">
+{% endblock%}
+
+{% block content %}
+	{% include "./include/header.tpl" %}
+	<div class="posts">
+		<ul>
+			{% for post in posts %}
+				<li class="post" data-id="{{ post._id }} ">
+					<h4>
+						<a href="posts/{{ post._id }} ">{{ post.title }} </a>
+					</h4>
+					<p class="post-content">
+						{{ post.content }} 
+					</p>
+					<button class="btn delete-btn">删除</button>
+				</li>
+			{% endfor %}
+		</ul>
+		</div>
+{% endblock %}
 
 <script>
 	var deleteBtns = document.querySelectorAll('.delete-btn');
@@ -27,7 +41,6 @@
 			}).then(res => {
 				return res.json()
 			}).then(json => {
-				console.log(423423);
 				if (json.success) {
 					console.log('成功');
 					window.location.reload();

@@ -1,0 +1,25 @@
+a {
+  text-decoration: none;
+  color: #454545;
+}
+
+/* nav组件 */
+.nav {
+  margin-top: 40px;
+  margin-left: 60px;
+}
+
+.nav li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.nav a {
+  font-size: 15px;
+  padding: 4px 10px;
+  border-radius: 5px;
+}
+
+.nav a:hover {
+  background-color: #efefef;
+}
