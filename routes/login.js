@@ -29,3 +29,28 @@ exports.loginOut = (req, res) => {
     res.redirect('/');
   });
 };
+
+exports.signUp = (req, res) => {
+  // get the username password
+  const { password, username } = req.body;
+
+  const user = {
+    password,
+    username
+  };
+
+  return model.user
+    .signup(user)
+    .then(m => {
+      res.json({
+        success: true,
+        redirect: '/'
+      });
+    })
+    .catch(err => {
+      res.json({
+        success: false,
+        error: 'duplicate username'
+      });
+    });
+}

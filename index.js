@@ -57,44 +57,11 @@ app.use(
   )
 );
 
-app.get('/', (req, res) => {
-  if (req.session.user) {
-    res.render('index');
-  } else {
-    res.redirect('login');
-  }
-});
-
 /**
  * exports module.exports区别
  * 与require的关系
  */
 makeRoutes(app);
-
-app.post('/signup', (req, res) => {
-  // get the username password
-  const { password, username } = req.body;
-
-  const user = {
-    password,
-    username
-  };
-
-  return model.user
-    .signup(user)
-    .then(m => {
-      res.json({
-        success: true,
-        redirect: '/'
-      });
-    })
-    .catch(err => {
-      res.json({
-        success: false,
-        error: 'duplicate username'
-      });
-    });
-});
 
 app.listen(config.port, function() {
   console.log(`The server have started at http://localhost:${config.port}`);
