@@ -28,7 +28,7 @@
 					<input id="username" name="username" type="text" class="username">
 				</p>
 
-				<p id="input-pwd-step" style="display: none">
+				<p class="input-pwd-step" style="display: none">
 					<span>
 						<i class="cicle"></i> ~/ $ And Enter Your Password</span>
 					</span>
@@ -45,7 +45,21 @@
 				<span class="sh-icon sh-icon-full-screen"></span>
 			</div>
 			<div class="sh-bd">
-				<p>Hello world</p>
+				<p>
+					<span>
+						<i class="cicle"></i> ~/ $ Please Enter Your Name
+					</span>
+					<br>
+					<input id="sign-username" name="username" type="text" class="username">
+				</p>
+
+				<p class="input-pwd-step" style="display: none">
+					<span>
+						<i class="cicle"></i> ~/ $ And Enter Your Password</span>
+					</span>
+					<br>
+					<input id="sign-password" type="password" name="password" class="password">
+				</p>
 			</div>
 		</div>
 	</div>

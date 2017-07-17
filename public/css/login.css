@@ -141,3 +141,13 @@
   font: inherit;
   border: none;
 }
+
+.sh-dark .username,
+.sh-dark .password {
+  color: white;
+  background-color: black;
+}
+
+.sh-dark .cicle {
+  background-color: white;
+}

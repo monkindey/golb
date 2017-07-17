@@ -70,36 +70,53 @@
     }
   };
 
-  const username = q('#username');
-  const password = q('#password');
-  const step2 = q('#input-pwd-step');
-
   const flipper = q('.flipper-wrapper');
   const toggle = qa('.sh-icon-close');
 
-  username.focus();
+  function sign(container) {
+    return new Promise(function(resolve, reject) {
+      const username = container.querySelector('.username');
+      const password = container.querySelector('.password');
+      const inputPwdStep = container.querySelector('.input-pwd-step');
+      username.focus();
 
-  on(username, 'keydown', function(e) {
-    if (e.keyCode === keymap.ENTER) {
-      step2.style.display = 'inline';
-      password.focus();
-    }
-  });
+      on(username, 'keydown', function(e) {
+        if (e.keyCode === keymap.ENTER) {
+          inputPwdStep.style.display = 'inline';
+          password.focus();
+        }
+      });
 
-  on(password, 'keydown', function(e) {
-    if (e.keyCode === keymap.ENTER) {
-      http
-        .post('/login', {
-          username: username.value,
-          password: password.value
-        })
-        .then(function(res) {
-          if (res.success) {
-            window.location.href = res.redirect;
-          }
-        });
-    }
-  });
+      on(password, 'keydown', function(e) {
+        if (e.keyCode === keymap.ENTER) {
+          resolve({
+            username: username.value,
+            password: password.value
+          });
+        }
+      });
+    });
+  }
+
+  sign(q('.sign'))
+    .then(function(params) {
+      return http.post('/signup', params);
+    })
+    .then(function(res) {
+      if (res.success) {
+        window.location.href = res.redirect;
+      }
+    });
+
+  sign(q('.login'))
+    .then(function(res) {
+      return http.post('/login', res);
+    })
+    .then(function(res) {
+      if (res.success) {
+        window.location.href = res.redirect;
+      }
+    });
 
   on(toggle, 'click', function(e) {
     flipper.classList.toggle('flip');

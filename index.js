@@ -10,6 +10,7 @@
  * 2. post express session redirect can not store, because you not send cookie
  * and the redirect should let client to do it rather than the server.
  * 3. 修改nunjucks模版引擎的后缀名
+ * 4. https://softwareengineering.stackexchange.com/questions/99894/why-doesnt-http-have-post-redirect
  */
 
 const express = require('express');
@@ -70,10 +71,6 @@ app.get('/', (req, res) => {
  */
 makeRoutes(app);
 
-app.get('/signup', (req, res) => {
-  res.render('signup');
-});
-
 app.post('/signup', (req, res) => {
   // get the username password
   const { password, username } = req.body;
@@ -83,9 +80,9 @@ app.post('/signup', (req, res) => {
     username
   };
 
-  return model
+  return model.user
     .signup(user)
-    .then(res => {
+    .then(m => {
       res.json({
         success: true,
         redirect: '/'
